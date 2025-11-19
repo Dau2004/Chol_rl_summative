@@ -139,15 +139,6 @@ python3 main.py
 - **Hyperparameter Optimization**: Extensive tuning for each algorithm
 - **Vectorized Training**: Parallel environments for faster learning
 
-## Assignment Requirements Fulfilled
-
-✅ **Four RL Algorithms**: DQN, PPO, A2C, REINFORCE  
-✅ **Stable-Baselines3**: Professional RL library implementation  
-✅ **Same Environment**: All algorithms use identical warehouse environment  
-✅ **Objective Comparison**: Standardized evaluation metrics  
-✅ **Custom Environment**: Gymnasium-compliant implementation  
-✅ **Visualization**: Real-time GUI demonstration  
-
 ## Best Model Performance
 
 The **PPO (Proximal Policy Optimization)** algorithm achieved optimal performance:
@@ -166,6 +157,6 @@ The **PPO (Proximal Policy Optimization)** algorithm achieved optimal performanc
 
 ---
 
-**Author**: RL Implementation Team  
+**Author**: Chol Daniel Deng 
 **Course**: Reinforcement Learning Summative Assignment  
-**Date**: 2024
+**Date**: 2025
