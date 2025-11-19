@@ -1,8 +1,8 @@
 # Reinforcement Learning Summative Assignment Report
 
-**Student Name:** Chol Daniel Deng Dau 
+**Student Name:** Chol Daniel Deng Dau  
 **Video Recording:** [Link to your Video 3 minutes max, Camera On, Share the entire Screen]  
-**GitHub Repository:** [Link to your repository]
+**GitHub Repository:** https://github.com/Dau2004/Chol_rl_summative
 
 ---
 
