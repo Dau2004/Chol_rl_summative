@@ -1,0 +1,10 @@
+Enhanced Beautiful Warehouse Environment - Model Comparison
+============================================================
+
+DQN: 68.00 reward, 0.0 deliveries
+PPO: 79.50 reward, 0.0 deliveries
+A2C: 80.00 reward, 0.0 deliveries
+REINFORCE: 30.00 reward, 0.0 deliveries
+
+Best: A2C with 80.00 reward
+Training time: 1.1 minutes

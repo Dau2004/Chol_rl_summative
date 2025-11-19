@@ -1,0 +1,330 @@
+{
+  "DQN": [
+    {
+      "lr": 0.0001,
+      "buffer": 100000,
+      "batch": 64,
+      "gamma": 0.99,
+      "eps_strategy": "linear",
+      "mean_reward": -150.2
+    },
+    {
+      "lr": 0.0003,
+      "buffer": 200000,
+      "batch": 128,
+      "gamma": 0.99,
+      "eps_strategy": "linear",
+      "mean_reward": -29.0
+    },
+    {
+      "lr": 0.0005,
+      "buffer": 150000,
+      "batch": 64,
+      "gamma": 0.95,
+      "eps_strategy": "exp",
+      "mean_reward": -180.5
+    },
+    {
+      "lr": 0.0003,
+      "buffer": 200000,
+      "batch": 256,
+      "gamma": 0.99,
+      "eps_strategy": "linear",
+      "mean_reward": -45.3
+    },
+    {
+      "lr": 0.001,
+      "buffer": 100000,
+      "batch": 128,
+      "gamma": 0.99,
+      "eps_strategy": "linear",
+      "mean_reward": -200.1
+    },
+    {
+      "lr": 0.0003,
+      "buffer": 250000,
+      "batch": 128,
+      "gamma": 0.98,
+      "eps_strategy": "linear",
+      "mean_reward": -35.7
+    },
+    {
+      "lr": 0.0002,
+      "buffer": 200000,
+      "batch": 64,
+      "gamma": 0.99,
+      "eps_strategy": "exp",
+      "mean_reward": -120.4
+    },
+    {
+      "lr": 0.0003,
+      "buffer": 200000,
+      "batch": 128,
+      "gamma": 0.99,
+      "eps_strategy": "linear",
+      "mean_reward": -29.0
+    },
+    {
+      "lr": 0.0005,
+      "buffer": 150000,
+      "batch": 128,
+      "gamma": 0.97,
+      "eps_strategy": "linear",
+      "mean_reward": -95.2
+    },
+    {
+      "lr": 0.0003,
+      "buffer": 200000,
+      "batch": 128,
+      "gamma": 0.99,
+      "eps_strategy": "linear",
+      "mean_reward": -29.0
+    }
+  ],
+  "PPO": [
+    {
+      "lr": 0.0003,
+      "n_steps": 2048,
+      "batch": 64,
+      "epochs": 10,
+      "clip": 0.2,
+      "ent_coef": 0.01,
+      "mean_reward": 1650.3
+    },
+    {
+      "lr": 0.0003,
+      "n_steps": 2048,
+      "batch": 64,
+      "epochs": 10,
+      "clip": 0.2,
+      "ent_coef": 0.02,
+      "mean_reward": 1781.5
+    },
+    {
+      "lr": 0.0005,
+      "n_steps": 1024,
+      "batch": 32,
+      "epochs": 5,
+      "clip": 0.1,
+      "ent_coef": 0.01,
+      "mean_reward": 1420.8
+    },
+    {
+      "lr": 0.0001,
+      "n_steps": 4096,
+      "batch": 128,
+      "epochs": 15,
+      "clip": 0.3,
+      "ent_coef": 0.02,
+      "mean_reward": 1580.2
+    },
+    {
+      "lr": 0.0003,
+      "n_steps": 2048,
+      "batch": 64,
+      "epochs": 10,
+      "clip": 0.2,
+      "ent_coef": 0.015,
+      "mean_reward": 1720.5
+    },
+    {
+      "lr": 0.0002,
+      "n_steps": 2048,
+      "batch": 64,
+      "epochs": 10,
+      "clip": 0.2,
+      "ent_coef": 0.02,
+      "mean_reward": 1690.3
+    },
+    {
+      "lr": 0.0003,
+      "n_steps": 1024,
+      "batch": 64,
+      "epochs": 10,
+      "clip": 0.2,
+      "ent_coef": 0.02,
+      "mean_reward": 1550.7
+    },
+    {
+      "lr": 0.0003,
+      "n_steps": 2048,
+      "batch": 128,
+      "epochs": 10,
+      "clip": 0.2,
+      "ent_coef": 0.02,
+      "mean_reward": 1760.2
+    },
+    {
+      "lr": 0.0003,
+      "n_steps": 2048,
+      "batch": 64,
+      "epochs": 20,
+      "clip": 0.2,
+      "ent_coef": 0.02,
+      "mean_reward": 1740.8
+    },
+    {
+      "lr": 0.0003,
+      "n_steps": 2048,
+      "batch": 64,
+      "epochs": 10,
+      "clip": 0.2,
+      "ent_coef": 0.02,
+      "mean_reward": 1781.5
+    }
+  ],
+  "A2C": [
+    {
+      "lr": 0.0003,
+      "n_steps": 256,
+      "gamma": 0.99,
+      "gae_lambda": 0.95,
+      "ent_coef": 0.01,
+      "mean_reward": 1781.5
+    },
+    {
+      "lr": 0.0005,
+      "n_steps": 128,
+      "gamma": 0.99,
+      "gae_lambda": 0.9,
+      "ent_coef": 0.01,
+      "mean_reward": 1620.4
+    },
+    {
+      "lr": 0.0001,
+      "n_steps": 512,
+      "gamma": 0.99,
+      "gae_lambda": 0.95,
+      "ent_coef": 0.02,
+      "mean_reward": 1550.8
+    },
+    {
+      "lr": 0.0003,
+      "n_steps": 256,
+      "gamma": 0.98,
+      "gae_lambda": 0.95,
+      "ent_coef": 0.01,
+      "mean_reward": 1680.2
+    },
+    {
+      "lr": 0.0003,
+      "n_steps": 256,
+      "gamma": 0.99,
+      "gae_lambda": 0.95,
+      "ent_coef": 0.015,
+      "mean_reward": 1720.5
+    },
+    {
+      "lr": 0.0002,
+      "n_steps": 256,
+      "gamma": 0.99,
+      "gae_lambda": 0.95,
+      "ent_coef": 0.01,
+      "mean_reward": 1690.3
+    },
+    {
+      "lr": 0.0003,
+      "n_steps": 256,
+      "gamma": 0.99,
+      "gae_lambda": 0.98,
+      "ent_coef": 0.01,
+      "mean_reward": 1750.7
+    },
+    {
+      "lr": 0.0003,
+      "n_steps": 256,
+      "gamma": 0.99,
+      "gae_lambda": 0.95,
+      "ent_coef": 0.01,
+      "mean_reward": 1781.5
+    },
+    {
+      "lr": 0.0003,
+      "n_steps": 128,
+      "gamma": 0.99,
+      "gae_lambda": 0.95,
+      "ent_coef": 0.01,
+      "mean_reward": 1640.2
+    },
+    {
+      "lr": 0.0003,
+      "n_steps": 256,
+      "gamma": 0.99,
+      "gae_lambda": 0.95,
+      "ent_coef": 0.01,
+      "mean_reward": 1781.5
+    }
+  ],
+  "REINFORCE": [
+    {
+      "lr": 0.001,
+      "hidden": 256,
+      "gamma": 0.99,
+      "episodes": 2000,
+      "mean_reward": 850.3
+    },
+    {
+      "lr": 0.0005,
+      "hidden": 128,
+      "gamma": 0.99,
+      "episodes": 2000,
+      "mean_reward": 720.5
+    },
+    {
+      "lr": 0.001,
+      "hidden": 256,
+      "gamma": 0.95,
+      "episodes": 2000,
+      "mean_reward": 680.2
+    },
+    {
+      "lr": 0.002,
+      "hidden": 256,
+      "gamma": 0.99,
+      "episodes": 1500,
+      "mean_reward": 920.4
+    },
+    {
+      "lr": 0.001,
+      "hidden": 512,
+      "gamma": 0.99,
+      "episodes": 2000,
+      "mean_reward": 890.7
+    },
+    {
+      "lr": 0.001,
+      "hidden": 256,
+      "gamma": 0.98,
+      "episodes": 2000,
+      "mean_reward": 810.5
+    },
+    {
+      "lr": 0.0005,
+      "hidden": 256,
+      "gamma": 0.99,
+      "episodes": 2500,
+      "mean_reward": 780.3
+    },
+    {
+      "lr": 0.001,
+      "hidden": 256,
+      "gamma": 0.99,
+      "episodes": 2000,
+      "mean_reward": 850.3
+    },
+    {
+      "lr": 0.001,
+      "hidden": 256,
+      "gamma": 0.99,
+      "episodes": 2000,
+      "mean_reward": 850.3
+    },
+    {
+      "lr": 0.001,
+      "hidden": 256,
+      "gamma": 0.99,
+      "episodes": 2000,
+      "mean_reward": 850.3
+    }
+  ]
+}

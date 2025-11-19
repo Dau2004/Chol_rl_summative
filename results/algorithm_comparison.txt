@@ -1,0 +1,24 @@
+Beautiful Warehouse RL Algorithm Comparison
+==================================================
+
+PPO:
+  Average Reward: 25.00
+  Average Deliveries: 0.0
+  Training Time: 0.5 minutes
+
+DQN:
+  Average Reward: 24.00
+  Average Deliveries: 0.0
+  Training Time: 0.5 minutes
+
+A2C:
+  Average Reward: 9.00
+  Average Deliveries: 0.0
+  Training Time: 0.2 minutes
+
+REINFORCE:
+  Average Reward: 24.00
+  Average Deliveries: 0.0
+  Training Time: 0.2 minutes
+
+Best Algorithm: PPO

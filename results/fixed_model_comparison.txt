@@ -1,0 +1,8 @@
+FIXED Beautiful Warehouse Environment - Model Comparison
+============================================================
+
+PPO: 384.00 reward, 2.0 deliveries
+A2C: 180.00 reward, 0.0 deliveries
+REINFORCE: 80.00 reward, 0.0 deliveries
+
+Best: PPO with 384.00 reward

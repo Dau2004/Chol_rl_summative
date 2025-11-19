@@ -1,0 +1,17 @@
+DQN Hyperparameter Tuning Results
+==================================================
+Run 1: Avg Reward = 1206.00, Avg Deliveries = 0.00
+Parameters: {'learning_rate': 0.0003, 'buffer_size': 200000, 'batch_size': 128, 'exploration_fraction': 0.4}
+
+Run 2: Avg Reward = 170.00, Avg Deliveries = 0.00
+Parameters: {'learning_rate': 0.0001, 'buffer_size': 150000, 'batch_size': 64, 'exploration_fraction': 0.3}
+
+Run 3: Avg Reward = -1000.00, Avg Deliveries = 0.00
+Parameters: {'learning_rate': 0.0005, 'buffer_size': 200000, 'batch_size': 128, 'exploration_final_eps': 0.005}
+
+Run 4: Avg Reward = -1000.00, Avg Deliveries = 0.00
+Parameters: {'learning_rate': 0.0002, 'buffer_size': 200000, 'batch_size': 64, 'train_freq': 32}
+
+Run 5: Avg Reward = -1000.00, Avg Deliveries = 0.00
+Parameters: {'learning_rate': 0.0003, 'buffer_size': 100000, 'batch_size': 128, 'gradient_steps': 16}
+
