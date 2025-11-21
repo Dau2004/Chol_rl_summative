@@ -13,7 +13,7 @@ def render_warehouse(env):
         
         try:
             env.window = pygame.display.set_mode((env.grid_size * 80 + 250, env.grid_size * 80 + 100))
-            pygame.display.set_caption("🏭 Warehouse Robot")
+            pygame.display.set_caption("🏥 Vaccine Cold-Chain Storage Robot - South Sudan")
             env.clock = pygame.time.Clock()
         except pygame.error:
             return None
@@ -79,46 +79,53 @@ def render_warehouse(env):
     pygame.draw.circle(env.window, LIGHT_BLUE, (robot_center_x, robot_center_y), cell_size // 3)
     pygame.draw.circle(env.window, WHITE, (robot_center_x - 8, robot_center_y - 8), cell_size // 6)
     
-    # Carrying indicator
+    # Vaccine carrying indicator
     if env.carrying > 0:
         for i in range(env.carrying):
             carry_x = robot_center_x + (i - env.carrying/2) * 15
             carry_y = robot_center_y - 25
-            pygame.draw.circle(env.window, GOLD, (int(carry_x), int(carry_y)), 8)
+            pygame.draw.circle(env.window, WHITE, (int(carry_x), int(carry_y)), 8)
+            pygame.draw.circle(env.window, EMERALD, (int(carry_x), int(carry_y)), 5)
     
     # UI Panel
     ui_x = env.grid_size * cell_size + 20
     font_large = pygame.font.Font(None, 32)
     font_medium = pygame.font.Font(None, 24)
     
-    title = font_large.render("🏭 WAREHOUSE ROBOT", True, WHITE)
+    title = font_large.render("🏥 VACCINE ROBOT", True, WHITE)
     env.window.blit(title, (ui_x, 20))
     
+    subtitle = font_medium.render("South Sudan Health", True, EMERALD)
+    env.window.blit(subtitle, (ui_x, 50))
+    
     stats = [
-        f"🔋 Steps: {env.steps}/{env.max_steps}",
-        f"📦 Carrying: {env.carrying}/{env.max_inventory}",
-        f"🎯 Delivered: {env.delivered_items}",
-        f"📍 Items Left: {len(env.items)}",
-        f"⚡ Status: {'LOADED' if env.carrying else 'ACTIVE'}"
+        f"❄️ Cold-Chain: {env.steps}/{env.max_steps}",
+        f"💉 Vaccines: {env.carrying}/{env.max_inventory}",
+        f"🏥 Delivered: {env.delivered_items}",
+        f"📦 Boxes Left: {len(env.items)}",
+        f"❄️ Status: {'LOADED' if env.carrying else 'READY'}"
     ]
     
     for i, stat in enumerate(stats):
-        color = EMERALD if "ACTIVE" in stat or "LOADED" in stat else WHITE
+        color = EMERALD if "READY" in stat or "LOADED" in stat else WHITE
         text = font_medium.render(stat, True, color)
-        env.window.blit(text, (ui_x, 70 + i * 30))
+        env.window.blit(text, (ui_x, 85 + i * 30))
     
-    # Progress bar
+    # Cold-Chain Timer Progress bar
     progress = (env.max_steps - env.steps) / env.max_steps
     bar_width = 180
     bar_height = 20
     
-    pygame.draw.rect(env.window, (50, 50, 50), (ui_x, 220, bar_width, bar_height))
+    timer_label = font_medium.render("❄️ Cold-Chain Timer", True, WHITE)
+    env.window.blit(timer_label, (ui_x, 215))
+    
+    pygame.draw.rect(env.window, (50, 50, 50), (ui_x, 240, bar_width, bar_height))
     
     fill_width = int(bar_width * progress)
     color = EMERALD if progress > 0.5 else GOLD if progress > 0.2 else RUBY
-    pygame.draw.rect(env.window, color, (ui_x, 220, fill_width, bar_height))
+    pygame.draw.rect(env.window, color, (ui_x, 240, fill_width, bar_height))
     
-    pygame.draw.rect(env.window, WHITE, (ui_x, 220, bar_width, bar_height), 2)
+    pygame.draw.rect(env.window, WHITE, (ui_x, 240, bar_width, bar_height), 2)
     
     pygame.display.flip()
     env.clock.tick(8)

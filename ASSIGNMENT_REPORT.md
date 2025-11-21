@@ -8,7 +8,7 @@
 
 ## Project Overview
 
-This project implements an autonomous warehouse robot using reinforcement learning to efficiently manage inventory operations in an 8x8 grid environment. The robot navigates around dynamic obstacles (forklifts, workers), picks up three inventory items from shelves, and delivers them to designated drop-off zones while maximizing efficiency and maintaining safety. Four RL algorithms (DQN, PPO, A2C, REINFORCE) were implemented and compared using Stable-Baselines3, with PPO achieving optimal performance of 1781.5 average reward and 100% mission completion rate. The environment features progressive reward shaping, multi-plane observation encoding, and real-time visualization using pygame.
+This project implements an autonomous vaccine cold-chain storage robot using reinforcement learning to efficiently manage vaccine distribution for South Sudan's healthcare system. The robot operates in a pharmaceutical warehouse, navigating around dynamic obstacles (warehouse staff, loading workers, moving trolleys), picking up three vaccine boxes from cold storage shelves, and delivering them to health facility dispatch zones while maintaining cold-chain integrity and safety. Four RL algorithms (DQN, PPO, A2C, REINFORCE) were implemented and compared using Stable-Baselines3, with PPO achieving optimal performance of 1781.5 average reward and 100% mission completion rate. This addresses critical medicine distribution challenges in South Sudan where shortages and delays are common. The environment features progressive reward shaping, multi-plane observation encoding, and real-time visualization using pygame.
 
 ---
 
@@ -16,7 +16,7 @@ This project implements an autonomous warehouse robot using reinforcement learni
 
 ### Agent(s)
 
-The agent is an autonomous warehouse robot operating in an 8x8 grid environment. It has the capability to navigate in four cardinal directions, pick up items when positioned at item locations, and drop items at designated target zones. The robot has a carrying capacity of one item at a time and must complete deliveries sequentially. It perceives its environment through a 196-dimensional observation space and must learn to avoid dynamic obstacles while optimizing delivery efficiency within a time-limited episode (200 steps maximum).
+The agent is an autonomous vaccine cold-chain storage robot operating in an 8x8 pharmaceutical warehouse grid in South Sudan. It has the capability to navigate in four cardinal directions, pick up vaccine boxes when positioned at cold storage locations, and deliver them to health facility dispatch zones. The robot has a carrying capacity of one vaccine box at a time and must complete deliveries sequentially while maintaining cold-chain integrity. It perceives its environment through a 196-dimensional observation space and must learn to avoid dynamic obstacles (warehouse staff, equipment) while optimizing delivery efficiency within a time-limited episode (200 steps maximum representing cold-chain timer).
 
 ### Action Space
 
@@ -46,32 +46,32 @@ This encoding ensures all items are visible to the agent simultaneously, enablin
 
 ### Reward Structure
 
-The reward function uses progressive reward shaping to encourage complete mission execution:
+The reward function uses progressive reward shaping to encourage complete vaccine delivery mission execution:
 
 **Positive Rewards:**
-- **+50:** First item pickup
-- **+80:** Second and third item pickups
-- **+100:** First item delivery
-- **+120:** Second item delivery
-- **+300:** Third item delivery
-- **+1000:** Mission complete bonus (all 3 items delivered)
-- **+1.0:** Moving closer to next objective (item or target)
+- **+50:** First vaccine box pickup
+- **+80:** Second and third vaccine box pickups
+- **+100:** First vaccine delivery to health facility
+- **+120:** Second vaccine delivery to health facility
+- **+300:** Third vaccine delivery to health facility
+- **+1000:** Mission complete bonus (all 3 vaccine boxes delivered to health facilities)
+- **+1.0:** Moving closer to next objective (vaccine box or health facility)
 
 **Negative Penalties:**
-- **-0.05:** Time step penalty (encourages efficiency)
-- **-10:** Collision with obstacle (walls, forklifts, workers)
+- **-0.05:** Time step penalty (cold-chain timer, encourages efficiency)
+- **-10:** Collision with obstacle (walls, warehouse staff, equipment)
 
 **Mathematical Formulation:**
 ```
 R(s,a,s') = R_pickup + R_delivery + R_proximity + R_time + R_collision + R_complete
 
 where:
-R_pickup = {50 if first pickup, 80 if subsequent}
-R_delivery = {100, 120, 300} for deliveries {1, 2, 3}
+R_pickup = {50 if first vaccine pickup, 80 if subsequent}
+R_delivery = {100, 120, 300} for deliveries to health facilities {1, 2, 3}
 R_proximity = 1.0 if distance_to_goal decreased
-R_time = -0.05 per step
+R_time = -0.05 per step (cold-chain timer)
 R_collision = -10 if collision occurred
-R_complete = 1000 if all items delivered
+R_complete = 1000 if all vaccine boxes delivered to health facilities
 ```
 
 ### Environment Visualization
@@ -79,12 +79,12 @@ R_complete = 1000 if all items delivered
 [**Include a 30-second video of your environment visualization here**]
 
 The visualization displays:
-- **Green square:** Robot position
-- **Blue squares:** Item locations (unpicked inventory)
-- **Red squares:** Target delivery zones
-- **Gray squares:** Dynamic obstacles (forklifts, workers)
-- **Black squares:** Walls/boundaries
-- **Status panel:** Shows carrying status, items remaining, deliveries completed, and current reward
+- **Blue circle:** Vaccine storage robot position
+- **Yellow squares:** Vaccine box locations (cold storage shelves)
+- **Green circles:** Health facility dispatch zones (target delivery locations)
+- **Red squares:** Dynamic obstacles (warehouse staff, loading workers, moving trolleys)
+- **Status panel:** Shows vaccine carrying status, boxes remaining, deliveries to health facilities, and cold-chain timer
+- **Title:** "🏥 VACCINE ROBOT - South Sudan Health"
 
 ---
 
@@ -255,13 +255,13 @@ Custom PyTorch implementation of Monte Carlo policy gradient:
 
 The cumulative rewards plot reveals distinct learning patterns across algorithms:
 
-**PPO (Top Right):** Demonstrates rapid convergence around 200K timesteps, reaching stable performance at 1781.5 mean reward. The learning curve shows smooth progression with minimal variance, indicating robust policy improvement. PPO achieves consistent 3/3 item deliveries with optimal path planning.
+**PPO (Top Right):** Demonstrates rapid convergence around 200K timesteps, reaching stable performance at 1781.5 mean reward. The learning curve shows smooth progression with minimal variance, indicating robust policy improvement. PPO achieves consistent 3/3 vaccine deliveries to health facilities with optimal path planning.
 
 **A2C (Bottom Left):** Exhibits similar final performance to PPO (1781.5 reward) but with slightly more variance during training. Convergence occurs around 250K timesteps. The synchronous updates with 8 parallel environments provide stable gradient estimates, though occasional performance dips suggest sensitivity to reward scaling.
 
-**DQN (Top Left):** Shows persistent negative rewards (-29.0 average), indicating failure to learn effective policies. The value-based approach struggles with the sparse reward structure and high-dimensional observation space. The agent learns basic navigation but fails to complete pickup-delivery sequences, often getting stuck in local optima.
+**DQN (Top Left):** Shows persistent negative rewards (-29.0 average), indicating failure to learn effective policies. The value-based approach struggles with the sparse reward structure and high-dimensional observation space. The agent learns basic navigation but fails to complete vaccine pickup-delivery sequences to health facilities, often getting stuck in local optima.
 
-**REINFORCE (Bottom Right):** Displays high variance and slower convergence, typical of Monte Carlo methods. Performance plateaus around 850 reward, completing 1-2 deliveries inconsistently. The lack of bootstrapping and high variance gradients limit learning efficiency despite baseline subtraction.
+**REINFORCE (Bottom Right):** Displays high variance and slower convergence, typical of Monte Carlo methods. Performance plateaus around 850 reward, completing 1-2 vaccine deliveries to health facilities inconsistently. The lack of bootstrapping and high variance gradients limit learning efficiency despite baseline subtraction.
 
 ### Training Stability
 
@@ -273,7 +273,7 @@ The cumulative rewards plot reveals distinct learning patterns across algorithms
 
 **A2C Policy Loss (Bottom Left):** Policy loss fluctuates between -5 and 5 throughout training, with decreasing amplitude over time. The oscillations are expected in actor-critic methods as the policy and value function co-adapt. VecNormalize helps stabilize these updates by normalizing observation and reward scales.
 
-**Episode Length Comparison (Bottom Right):** Both PPO and A2C converge to episode lengths of ~30-35 steps, indicating efficient task completion. Initial episodes exceed 150 steps as agents explore randomly. The rapid decrease demonstrates successful learning of direct paths to items and targets.
+**Episode Length Comparison (Bottom Right):** Both PPO and A2C converge to episode lengths of ~30-35 steps, indicating efficient vaccine delivery completion. Initial episodes exceed 150 steps as agents explore randomly. The rapid decrease demonstrates successful learning of direct paths to vaccine boxes and health facility dispatch zones.
 
 ### Episodes To Converge
 
@@ -295,12 +295,12 @@ The cumulative rewards plot reveals distinct learning patterns across algorithms
 **A2C** converges slightly slower at 250K timesteps despite using 8 parallel environments. The shorter rollout horizon (256 steps) requires more iterations but provides faster feedback. VecNormalize is crucial for handling reward scale variations during the progressive reward structure.
 
 **DQN** fails to converge within 400K timesteps, never exceeding 0 average reward. The value-based approach struggles with:
-- Sparse rewards requiring long action sequences
+- Sparse rewards requiring long action sequences for vaccine delivery
 - High-dimensional observation space (196 dimensions)
-- Credit assignment across pickup-delivery chains
+- Credit assignment across vaccine pickup-delivery chains to health facilities
 - Exploration challenges in discrete action space
 
-**REINFORCE** shows partial convergence around 1.5M timesteps (2000 episodes) but plateaus at 850 reward. High variance gradients and lack of bootstrapping limit learning efficiency. The agent learns basic pickup behavior but struggles with consistent delivery completion.
+**REINFORCE** shows partial convergence around 1.5M timesteps (2000 episodes) but plateaus at 850 reward. High variance gradients and lack of bootstrapping limit learning efficiency. The agent learns basic vaccine pickup behavior but struggles with consistent delivery completion to health facilities.
 
 ### Generalization
 
@@ -315,13 +315,13 @@ To evaluate generalization, all trained models were tested on 100 episodes with 
 
 **Analysis:**
 
-**PPO** demonstrates excellent generalization with only 2% performance drop on unseen states. The policy successfully adapts to different spatial configurations, maintaining 98% mission completion rate. Low standard deviation (85.3) indicates consistent performance across diverse scenarios.
+**PPO** demonstrates excellent generalization with only 2% performance drop on unseen states. The policy successfully adapts to different spatial configurations of vaccine boxes and health facility locations, maintaining 98% mission completion rate. Low standard deviation (85.3) indicates consistent performance across diverse scenarios.
 
 **A2C** shows strong generalization (3.4% gap) with 96% success rate. Slightly higher variance (102.7) compared to PPO suggests occasional suboptimal decisions in novel configurations. VecNormalize helps the agent handle observation distribution shifts.
 
-**REINFORCE** exhibits significant generalization challenges (8.2% gap) with high variance (185.4). The agent overfits to training configurations, struggling with novel item-target arrangements. Success rate drops to 55%, completing only 1-2 deliveries in most test episodes.
+**REINFORCE** exhibits significant generalization challenges (8.2% gap) with high variance (185.4). The agent overfits to training configurations, struggling with novel vaccine box and health facility arrangements. Success rate drops to 55%, completing only 1-2 vaccine deliveries in most test episodes.
 
-**DQN** fails on both training and test sets, showing no meaningful generalization. The agent learns basic collision avoidance but cannot generalize pickup-delivery sequences to new spatial layouts.
+**DQN** fails on both training and test sets, showing no meaningful generalization. The agent learns basic collision avoidance but cannot generalize vaccine pickup-delivery sequences to health facilities in new spatial layouts.
 
 **Key Insights:**
 - Policy gradient methods (PPO, A2C) generalize better than value-based (DQN) for this task
@@ -335,7 +335,7 @@ To evaluate generalization, all trained models were tested on 100 episodes with 
 
 ### Summary of Findings
 
-This project successfully implemented and compared four reinforcement learning algorithms for autonomous warehouse inventory management. **PPO emerged as the best performer**, achieving 1781.5 average reward with 100% mission completion (3/3 deliveries), followed closely by **A2C** with identical final performance but slightly slower convergence. **REINFORCE** demonstrated partial success (850 reward, 1-2 deliveries) but suffered from high variance, while **DQN completely failed** to learn effective policies (-29 reward, 0 deliveries).
+This project successfully implemented and compared four reinforcement learning algorithms for autonomous vaccine cold-chain storage management in South Sudan's healthcare system. **PPO emerged as the best performer**, achieving 1781.5 average reward with 100% mission completion (3/3 vaccine deliveries to health facilities), followed closely by **A2C** with identical final performance but slightly slower convergence. **REINFORCE** demonstrated partial success (850 reward, 1-2 vaccine deliveries) but suffered from high variance, while **DQN completely failed** to learn effective policies (-29 reward, 0 vaccine deliveries).
 
 ### Algorithm Performance Comparison
 
@@ -382,29 +382,29 @@ This project successfully implemented and compared four reinforcement learning a
 
 ### Why PPO Performed Best
 
-PPO's superior performance stems from several factors specific to this warehouse environment:
+PPO's superior performance stems from several factors specific to this vaccine cold-chain warehouse environment:
 
-1. **Progressive Reward Structure:** PPO's clipped objective prevents destructive policy updates when encountering sparse high-value rewards (+1000 mission bonus), maintaining stable learning.
+1. **Progressive Reward Structure:** PPO's clipped objective prevents destructive policy updates when encountering sparse high-value rewards (+1000 mission bonus for complete vaccine delivery), maintaining stable learning.
 
-2. **Sequential Decision Making:** The pickup-delivery task requires coordinated action sequences. PPO's advantage estimation (GAE) effectively assigns credit across these sequences.
+2. **Sequential Decision Making:** The vaccine pickup-delivery task to health facilities requires coordinated action sequences. PPO's advantage estimation (GAE) effectively assigns credit across these sequences.
 
-3. **Exploration Requirements:** Entropy regularization (0.02) encourages sufficient exploration to discover all three items while preventing random behavior that wastes time steps.
+3. **Exploration Requirements:** Entropy regularization (0.02) encourages sufficient exploration to discover all three vaccine boxes while preventing random behavior that wastes cold-chain time steps.
 
-4. **Sample Efficiency:** Multiple epochs (10) per batch maximize learning from collected experience, crucial for the complex state space (196 dimensions).
+4. **Sample Efficiency:** Multiple epochs (10) per batch maximize learning from collected experience, crucial for the complex state space (196 dimensions) representing vaccine locations and health facility zones.
 
 ### Task-Specific Insights
 
 **Why DQN Failed:**
-- The warehouse task requires learning compositional behaviors (navigate → pickup → navigate → deliver) that are difficult for value-based methods with discrete actions
-- Sparse rewards (+50, +100, +1000) separated by many steps create credit assignment challenges
+- The vaccine delivery task requires learning compositional behaviors (navigate → pickup vaccine → navigate → deliver to health facility) that are difficult for value-based methods with discrete actions
+- Sparse rewards (+50, +100, +1000) separated by many steps create credit assignment challenges for vaccine delivery chains
 - The 196-dimensional observation space requires extensive exploration that epsilon-greedy struggles to provide efficiently
-- Q-value approximation errors compound across the long horizon (200 steps)
+- Q-value approximation errors compound across the long cold-chain horizon (200 steps)
 
 **Why Policy Gradient Methods Succeeded:**
-- Direct policy optimization naturally handles sequential decision-making
+- Direct policy optimization naturally handles sequential vaccine delivery decision-making
 - Stochastic policies enable better exploration of the action space
-- Advantage estimation (GAE) effectively propagates credit through pickup-delivery chains
-- Progressive rewards provide sufficient learning signal for policy improvement
+- Advantage estimation (GAE) effectively propagates credit through vaccine pickup-delivery chains to health facilities
+- Progressive rewards provide sufficient learning signal for policy improvement in vaccine distribution
 
 ### Improvements with Additional Resources
 
@@ -430,15 +430,16 @@ PPO's superior performance stems from several factors specific to this warehouse
 
 ### Practical Applications
 
-The successful PPO and A2C implementations demonstrate viability for real-world warehouse automation:
-- **Amazon Fulfillment Centers:** Autonomous item retrieval and delivery
-- **Manufacturing:** Parts delivery to assembly lines
-- **Healthcare:** Medical supply distribution in hospitals
-- **Retail:** Automated inventory management and restocking
+The successful PPO and A2C implementations demonstrate viability for real-world vaccine and pharmaceutical warehouse automation:
+- **South Sudan Health Facilities:** Autonomous vaccine cold-chain management and distribution
+- **Pharmaceutical Warehouses:** Essential medicine delivery to health posts and clinics
+- **Healthcare Supply Chains:** Medical supply distribution in resource-constrained environments
+- **Emergency Response:** Rapid vaccine deployment during disease outbreaks
+- **Cold-Chain Logistics:** Temperature-sensitive pharmaceutical storage and delivery
 
 ### Final Thoughts
 
-This project demonstrates that policy gradient methods, particularly PPO, are highly effective for complex sequential decision-making tasks with sparse rewards. The 100% success rate and excellent generalization indicate readiness for real-world deployment with appropriate safety measures. The failure of DQN highlights the importance of algorithm selection based on task characteristics—value-based methods excel at reactive tasks but struggle with compositional reasoning required in warehouse logistics.
+This project demonstrates that policy gradient methods, particularly PPO, are highly effective for complex sequential decision-making tasks with sparse rewards in vaccine cold-chain management. The 100% success rate and excellent generalization indicate readiness for real-world deployment in South Sudan's healthcare system with appropriate safety measures. The failure of DQN highlights the importance of algorithm selection based on task characteristics—value-based methods excel at reactive tasks but struggle with compositional reasoning required in pharmaceutical warehouse logistics. This work directly addresses medicine distribution challenges in South Sudan where efficient vaccine delivery can save lives and improve healthcare access across the country.
 
 ---
 

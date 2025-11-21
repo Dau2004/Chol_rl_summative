@@ -11,7 +11,7 @@ from environment.custom_env import WarehouseEnv
 
 def run_best_model():
     """Run the best performing model (PPO)"""
-    print("🏭 Autonomous Warehouse Robot - Best Model Demo")
+    print("🏥 Vaccine Cold-Chain Storage Robot - South Sudan")
     print("=" * 60)
     
     # Load the best model (PPO)
@@ -27,7 +27,7 @@ def run_best_model():
     env = WarehouseEnv(render_mode="human")
     
     print("\n🎮 Starting demonstration...")
-    print("📋 Mission: Collect 3 items and deliver them to target zones")
+    print("💉 Mission: Collect 3 vaccine boxes and deliver to health facilities")
     print("🎯 Expected: 3/3 deliveries, ~1781 reward, ~30 steps")
     
     # Run demonstration episodes
@@ -41,8 +41,8 @@ def run_best_model():
         
         print(f"Initial state:")
         print(f"  Robot: {env.robot_pos}")
-        print(f"  Items: {env.items}")
-        print(f"  Targets: {env.targets}")
+        print(f"  Vaccine Boxes: {env.items}")
+        print(f"  Health Facilities: {env.targets}")
         
         while steps < 200:
             # Get action from trained model
@@ -72,14 +72,14 @@ def run_best_model():
         # Episode results
         print(f"\n📊 Episode {episode + 1} Results:")
         print(f"  Total Reward: {total_reward:.1f}")
-        print(f"  Deliveries: {env.delivered_items}/3")
+        print(f"  Deliveries to Health Facilities: {env.delivered_items}/3")
         print(f"  Steps: {steps}")
-        print(f"  Items Remaining: {len(env.items)}")
+        print(f"  Vaccine Boxes Remaining: {len(env.items)}")
         
         if env.delivered_items >= 3:
-            print("  🎉 MISSION COMPLETE! All items delivered!")
+            print("  🎉 MISSION COMPLETE! All vaccines delivered to health facilities!")
         elif env.delivered_items >= 2:
-            print("  ✅ Good performance! 2 deliveries completed.")
+            print("  ✅ Good performance! 2 vaccine deliveries completed.")
         else:
             print("  ⚠️  Needs improvement.")
         
@@ -164,7 +164,7 @@ def compare_models():
 
 def main():
     """Main entry point"""
-    print("🤖 Autonomous Warehouse Robot - RL Demonstration")
+    print("🏥 Vaccine Cold-Chain Storage Robot - South Sudan Health Facilities")
     print("=" * 80)
     print("1. Run Best Model Demo")
     print("2. Compare All Models")
