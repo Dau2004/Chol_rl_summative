@@ -3,6 +3,10 @@
 ## Project Overview
 This project implements an autonomous vaccine storage robot using reinforcement learning to efficiently manage vaccine distribution in South Sudan's healthcare system. The robot navigates a pharmaceutical cold-chain warehouse, picks up vaccine boxes, avoids dynamic obstacles (staff and equipment), and delivers essential medicines to health facilities across the country, optimizing for speed and safety in a resource-constrained environment.
 
+One of the biggest challenges we face is maintaining an efficient cold-chain for vaccines. Delays or mistakes in storage and dispatch can directly affect access to life-saving immunizations in rural communities.
+
+To explore how automation could help, I built a reinforcement learning agent that simulates a robot working inside a cold-chain vaccine storage depot. The robot’s job is to collect vaccine packages from chilled racks and deliver them to packing zones for transport to clinics.
+
 ## Environment Description
 
 ### Mission Scenario
