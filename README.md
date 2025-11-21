@@ -149,8 +149,7 @@ python3 main.py
 ✅ **Objective Comparison**: Standardized evaluation metrics  
 ✅ **Custom Environment**: Gymnasium-compliant implementation  
 ✅ **Visualization**: Real-time GUI demonstration with South Sudan health context  
-✅ **Real-World Application**: Addresses vaccine distribution challenges in South Sudan  
-
+✅ **Real-World Application**: Addresses vaccine distribution challenges in South Sudan
 ## Best Model Performance
 
 The **PPO (Proximal Policy Optimization)** algorithm achieved optimal performance:
